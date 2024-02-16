@@ -12,6 +12,12 @@ import SelecionarIngredientes from './SelecionarIngredientes.vue';
       methods: {
         adicionarIngrediente(ingredienteEvento:string) {
           this.ingredientes.push(ingredienteEvento)
+        },
+        removerIngrediente(ingredienteEvento:string) {
+          const index = this.ingredientes.indexOf(ingredienteEvento);
+          if (index > -1) { 
+            this.ingredientes.splice(index, 1); 
+          }
         }
       }
 }
@@ -20,7 +26,10 @@ import SelecionarIngredientes from './SelecionarIngredientes.vue';
 <template>
     <main class="conteudo-principal">
         <SuaLista :ingredientes="ingredientes"/>
-        <SelecionarIngredientes @adicionar-ingrediente="adicionarIngrediente" />
+        <SelecionarIngredientes 
+          @adicionar-ingrediente="adicionarIngrediente" 
+          @remover-ingrediente="removerIngrediente"
+        />
     </main>
 </template>
 
